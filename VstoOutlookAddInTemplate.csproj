@@ -10,6 +10,7 @@
 		<CodeAnalysisRuleSet>CodeAnalysis.ruleset</CodeAnalysisRuleSet>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<DefineConstants>VSTO40</DefineConstants>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<LoadBehavior>3</LoadBehavior>
 		<NoStandardLibraries>false</NoStandardLibraries>
 		<OutputType>Library</OutputType>
@@ -128,7 +129,7 @@
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
 		<None Include="CodeAnalysis.ruleset" />
-		<None Include="stylecop.json" />
+		<AdditionalFiles Include="stylecop.json" />
 		<Compile Include="ThisAddIn.cs">
 			<SubType>Code</SubType>
 		</Compile>
