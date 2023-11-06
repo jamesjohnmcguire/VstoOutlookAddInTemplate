@@ -21,7 +21,6 @@ namespace VstoOutlookAddInTemplate
 	/// <seealso cref="Microsoft.Office.Tools.Outlook.OutlookAddInBase" />
 	public partial class ThisAddIn
 	{
-
 		protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
 		{
 			return new MainRibbon();

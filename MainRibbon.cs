@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/////////////////////////////////////////////////////////////////////////////
+// <copyright file="MainRibbon.cs" company="James John McGuire">
+// Copyright © 2023 James John McGuire. All Rights Reserved.
+// </copyright>
+/////////////////////////////////////////////////////////////////////////////
+
+using System;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
-using System.Text;
+using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
 
 namespace VstoOutlookAddInTemplate
@@ -18,8 +22,6 @@ namespace VstoOutlookAddInTemplate
 		public MainRibbon()
 		{
 		}
-
-		#region IRibbonExtensibility Members
 
 		public string GetCustomUI(string ribbonID)
 		{
@@ -39,19 +41,41 @@ namespace VstoOutlookAddInTemplate
 			return text;
 		}
 
-		#endregion
+		public void OnAboutButton()
+		{
+			string version = GetVersion();
 
-		#region Ribbon Callbacks
-		//Create callback methods here. For more information about adding callback methods, visit https://go.microsoft.com/fwlink/?LinkID=271226
+			string message = "Version: " + version;
+			MessageBox.Show(message, "This Add In ");
+		}
 
 		public void Ribbon_Load(Office.IRibbonUI ribbonUI)
 		{
 			this.ribbon = ribbonUI;
 		}
 
-		#endregion
+		private static FileVersionInfo GetAssemblyInformation()
+		{
+			FileVersionInfo fileVersionInfo = null;
 
-		#region Helpers
+			Assembly assembly = Assembly.GetExecutingAssembly();
+
+			string location = assembly.Location;
+
+			if (string.IsNullOrWhiteSpace(location))
+			{
+				// Single file apps have no assemblies.
+				Process process = Process.GetCurrentProcess();
+				location = process.MainModule.FileName;
+			}
+
+			if (!string.IsNullOrWhiteSpace(location))
+			{
+				fileVersionInfo = FileVersionInfo.GetVersionInfo(location);
+			}
+
+			return fileVersionInfo;
+		}
 
 		private static string GetResourceText(string resourceName)
 		{
@@ -71,6 +95,13 @@ namespace VstoOutlookAddInTemplate
 			return text;
 		}
 
-	#endregion
-}
+		private static string GetVersion()
+		{
+			FileVersionInfo fileVersionInfo = GetAssemblyInformation();
+
+			string assemblyVersion = fileVersionInfo.FileVersion;
+
+			return assemblyVersion;
+		}
+	}
 }
