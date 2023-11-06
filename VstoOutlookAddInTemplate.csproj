@@ -129,6 +129,8 @@
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
 		<None Include="CodeAnalysis.ruleset" />
+		<Compile Include="MainRibbon.cs" />
+		<EmbeddedResource Include="MainRibbon.xml" />
 		<AdditionalFiles Include="stylecop.json" />
 		<Compile Include="ThisAddIn.cs">
 			<SubType>Code</SubType>
