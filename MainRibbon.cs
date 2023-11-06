@@ -4,7 +4,6 @@
 // </copyright>
 /////////////////////////////////////////////////////////////////////////////
 
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -41,7 +40,7 @@ namespace VstoOutlookAddInTemplate
 			return text;
 		}
 
-		public void OnAboutButton()
+		public void OnAboutButton(Office.IRibbonControl control)
 		{
 			string version = GetVersion();
 
@@ -49,7 +48,7 @@ namespace VstoOutlookAddInTemplate
 			MessageBox.Show(message, "This Add In ");
 		}
 
-		public void Ribbon_Load(Office.IRibbonUI ribbonUI)
+		public void OnRibbonLoad(Office.IRibbonUI ribbonUI)
 		{
 			this.ribbon = ribbonUI;
 		}

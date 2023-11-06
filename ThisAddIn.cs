@@ -4,12 +4,6 @@
 // </copyright>
 /////////////////////////////////////////////////////////////////////////////
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-
 using Office = Microsoft.Office.Core;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
@@ -21,16 +15,17 @@ namespace VstoOutlookAddInTemplate
 	/// <seealso cref="Microsoft.Office.Tools.Outlook.OutlookAddInBase" />
 	public partial class ThisAddIn
 	{
-		protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
+		protected override Office.IRibbonExtensibility
+			CreateRibbonExtensibilityObject()
 		{
 			return new MainRibbon();
 		}
 
-		private void ThisAddIn_Startup(object sender, System.EventArgs e)
+		private void ThisAddInStartup(object sender, System.EventArgs e)
 		{
 		}
 
-		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
+		private void ThisAddInShutdown(object sender, System.EventArgs e)
 		{
 			// Note: Outlook no longer raises this event. If you have code
 			// that must run when Outlook shuts down, see
@@ -43,8 +38,8 @@ namespace VstoOutlookAddInTemplate
 		/// </summary>
 		private void InternalStartup()
 		{
-			this.Startup += new System.EventHandler(ThisAddIn_Startup);
-			this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
+			this.Startup += new System.EventHandler(ThisAddInStartup);
+			this.Shutdown += new System.EventHandler(ThisAddInShutdown);
 		}
 	}
 }
