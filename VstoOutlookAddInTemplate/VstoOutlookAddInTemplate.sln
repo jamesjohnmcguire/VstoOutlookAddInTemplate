@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VstoOutlookAddInTemplate", "VstoOutlookAddInTemplate.csproj", "{2B22B5BE-DB56-4894-829E-33073DE9CECA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B22B5BE-DB56-4894-829E-33073DE9CECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B22B5BE-DB56-4894-829E-33073DE9CECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B22B5BE-DB56-4894-829E-33073DE9CECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B22B5BE-DB56-4894-829E-33073DE9CECA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66465F57-2C11-4C15-8AC3-7249FF7E28A7}
+	EndGlobalSection
+EndGlobal
