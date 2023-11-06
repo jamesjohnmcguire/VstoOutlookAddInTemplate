@@ -23,7 +23,20 @@ namespace VstoOutlookAddInTemplate
 
 		public string GetCustomUI(string ribbonID)
 		{
-			return GetResourceText("VstoOutlookAddInTemplate.MainRibbon.xml");
+			string text = null;
+
+			switch (ribbonID)
+			{
+				case "Microsoft.Outlook.Explorer":
+					text = GetResourceText(
+						"VstoOutlookAddInTemplate.MainRibbon.xml");
+					break;
+				case "Microsoft.Outlook.Mail.Compose":
+				default:
+					break;
+			}
+
+			return text;
 		}
 
 		#endregion
