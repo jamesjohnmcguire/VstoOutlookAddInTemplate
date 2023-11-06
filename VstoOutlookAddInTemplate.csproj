@@ -139,7 +139,7 @@
 			<DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
 		</Compile>
 		<AppDesigner Include="Properties\" />
-		<None Include="VstoOutlookAddInTemplate_TemporaryKey.pfx" />
+		<None Include="TemporaryKey.pfx" />
 	</ItemGroup>
 
 	<ItemGroup>
