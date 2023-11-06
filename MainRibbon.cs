@@ -85,9 +85,13 @@ namespace VstoOutlookAddInTemplate
 			using (Stream templateObjectStream =
 				thisAssembly.GetManifestResourceStream(resourceName))
 			{
-				using (StreamReader reader = new StreamReader(templateObjectStream))
+				if (templateObjectStream != null)
 				{
-					text = reader.ReadToEnd();
+					using (StreamReader reader =
+						new StreamReader(templateObjectStream))
+					{
+						text = reader.ReadToEnd();
+					}
 				}
 			}
 
