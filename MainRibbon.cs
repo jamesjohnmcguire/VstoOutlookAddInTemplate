@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Text;
 using Office = Microsoft.Office.Core;
@@ -41,24 +42,22 @@ namespace VstoOutlookAddInTemplate
 
 		private static string GetResourceText(string resourceName)
 		{
-			Assembly asm = Assembly.GetExecutingAssembly();
-			string[] resourceNames = asm.GetManifestResourceNames();
-			for (int i = 0; i < resourceNames.Length; ++i)
+			string text = null;
+
+			Assembly thisAssembly = Assembly.GetExecutingAssembly();
+
+			using (Stream templateObjectStream =
+				thisAssembly.GetManifestResourceStream(resourceName))
 			{
-				if (string.Compare(resourceName, resourceNames[i], StringComparison.OrdinalIgnoreCase) == 0)
+				using (StreamReader reader = new StreamReader(templateObjectStream))
 				{
-					using (StreamReader resourceReader = new StreamReader(asm.GetManifestResourceStream(resourceNames[i])))
-					{
-						if (resourceReader != null)
-						{
-							return resourceReader.ReadToEnd();
-						}
-					}
+					text = reader.ReadToEnd();
 				}
 			}
-			return null;
+
+			return text;
 		}
 
-		#endregion
-	}
+	#endregion
+}
 }
