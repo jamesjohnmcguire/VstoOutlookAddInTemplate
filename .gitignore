@@ -25,4 +25,4 @@ bld/
 # NUNIT
 TestResult.xml
 
-SourceCode/packages/
+packages/
