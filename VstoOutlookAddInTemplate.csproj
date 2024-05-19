@@ -107,6 +107,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Analyzer Include="packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+		<Analyzer Include="packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Include="Properties\AssemblyInfo.cs">
 			<SubType>Code</SubType>
 		</Compile>
@@ -143,11 +148,6 @@
 		</Compile>
 		<AppDesigner Include="Properties\" />
 		<None Include="TemporaryKey.pfx" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Analyzer Include="packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-		<Analyzer Include="packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
 	</ItemGroup>
 
 	<PropertyGroup>

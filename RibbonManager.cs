@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////
-// <copyright file="MainRibbon.cs" company="James John McGuire">
-// Copyright © 2023 James John McGuire. All Rights Reserved.
+// <copyright file="RibbonManager.cs" company="James John McGuire">
+// Copyright © 2022 - 2024 James John McGuire. All Rights Reserved.
 // </copyright>
 /////////////////////////////////////////////////////////////////////////////
 
@@ -14,11 +14,11 @@ using Office = Microsoft.Office.Core;
 namespace VstoOutlookAddInTemplate
 {
 	[ComVisible(true)]
-	public class MainRibbon : Office.IRibbonExtensibility
+	public class RibbonManager : Office.IRibbonExtensibility
 	{
 		private Office.IRibbonUI ribbon;
 
-		public MainRibbon()
+		public RibbonManager()
 		{
 		}
 

@@ -1,6 +1,6 @@
 ﻿/////////////////////////////////////////////////////////////////////////////
 // <copyright file="ThisAddIn.cs" company="James John McGuire">
-// Copyright © 2023 James John McGuire. All Rights Reserved.
+// Copyright © 2022 - 2024 James John McGuire. All Rights Reserved.
 // </copyright>
 /////////////////////////////////////////////////////////////////////////////
 
@@ -18,7 +18,8 @@ namespace VstoOutlookAddInTemplate
 		protected override Office.IRibbonExtensibility
 			CreateRibbonExtensibilityObject()
 		{
-			return new MainRibbon();
+			RibbonManager ribbonManager = new RibbonManager();
+			return ribbonManager;
 		}
 
 		private void ThisAddInStartup(object sender, System.EventArgs e)
