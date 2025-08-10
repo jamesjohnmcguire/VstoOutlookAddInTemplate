@@ -1,211 +1,76 @@
-﻿<Project
-	ToolsVersion="17.0"
-	DefaultTargets="Build"
-	xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
-	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<AssemblyName>VstoOutlookAddInTemplate</AssemblyName>
-		<BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
-		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<CodeAnalysisRuleSet>CodeAnalysis.ruleset</CodeAnalysisRuleSet>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<DefineConstants>VSTO40;UseOfficeInterop</DefineConstants>
-		<LoadBehavior>3</LoadBehavior>
-		<NoStandardLibraries>false</NoStandardLibraries>
+		<EnableComHosting>true</EnableComHosting>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<ManifestKeyFile>TemporaryKey.pfx</ManifestKeyFile>
+		<ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
 		<OutputType>Library</OutputType>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>{2B22B5BE-DB56-4894-829E-33073DE9CECA}</ProjectGuid>
-		<ProjectTypeGuids>{BAA0C2D2-18E2-41B9-852F-F413020CAA33};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-		<ResolveComReferenceSilent>true</ResolveComReferenceSilent>
-		<RootNamespace>VstoOutlookAddInTemplate</RootNamespace>
-		<TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+		<Product>MyOutlookAddIn</Product>
+		<RegisterForComInterop>true</RegisterForComInterop>
+		<RootNamespace>MyOutlookAddin</RootNamespace>
+		<SignManifests>true</SignManifests>
+		<TargetFramework>net48</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
-			<Install>true</Install>
-			<ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
-			<Visible>False</Visible>
-		</BootstrapperPackage>
-	</ItemGroup>
-
-	<PropertyGroup>
-		<OfficeApplication>Outlook</OfficeApplication>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
-		<DefineConstants>$(DefineConstants);TRACE</DefineConstants>
-		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Reference Include="Accessibility" />
-		<Reference Include="Microsoft.CSharp" />
-		<Reference Include="System" />
-		<Reference Include="System.Data" />
-		<Reference Include="System.Drawing" />
-		<Reference Include="System.Windows.Forms" />
-		<Reference Include="System.Xml" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Xml.Linq" />
-		<Reference Include="System.Data.DataSetExtensions" />
+		<COMReference Include="Microsoft.Office.Interop.Outlook">
+			<Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+			<VersionMajor>9</VersionMajor>
+			<VersionMinor>6</VersionMinor>
+			<WrapperTool>tlbimp</WrapperTool>
+			<Lcid>0</Lcid>
+			<Isolated>false</Isolated>
+		</COMReference>
+		<COMReference Include="Microsoft.Office.Core">
+			<Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+			<VersionMajor>2</VersionMajor>
+			<VersionMinor>8</VersionMinor>
+			<WrapperTool>tlbimp</WrapperTool>
+			<Lcid>0</Lcid>
+			<Isolated>false</Isolated>
+		</COMReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="Microsoft.Office.Tools.v4.0.Framework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.VisualStudio.Tools.Applications.Runtime, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Office.Tools.Outlook, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>False</Private>
-		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>True</Private>
-		</Reference>
-		<Reference Include="Microsoft.Office.Tools.Outlook.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-			<Private>True</Private>
-		</Reference>
-	</ItemGroup>
-
-	<Choose>
-		<When Condition="$([System.String]::Copy(&quot;;$(DefineConstants);&quot;).ToLower().Contains(';useofficeinterop;')) or $([System.String]::Copy(&quot;,$(DefineConstants),&quot;).ToLower().Contains(',useofficeinterop,'))">
-			<ItemGroup>
-				<Reference Include="Office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-					<Private>False</Private>
-					<EmbedInteropTypes>true</EmbedInteropTypes>
-				</Reference>
-				<Reference Include="Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-					<Private>False</Private>
-					<EmbedInteropTypes>true</EmbedInteropTypes>
-				</Reference>
-			</ItemGroup>
-		</When>
-		<Otherwise>
-			<ItemGroup>
-				<COMReference Include="Microsoft.Office.Core">
-					<Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-					<VersionMajor>2</VersionMajor>
-					<VersionMinor>7</VersionMinor>
-					<Lcid>0</Lcid>
-					<WrapperTool>tlbimp</WrapperTool>
-					<Isolated>False</Isolated>
-					<EmbedInteropTypes>true</EmbedInteropTypes>
-				</COMReference>
-				<COMReference Include="Microsoft.Office.Interop.Outlook">
-					<Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
-					<VersionMajor>9</VersionMajor>
-					<VersionMinor>5</VersionMinor>
-					<Lcid>0</Lcid>
-					<WrapperTool>tlbimp</WrapperTool>
-					<Isolated>False</Isolated>
-					<EmbedInteropTypes>true</EmbedInteropTypes>
-				</COMReference>
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
-
-	<ItemGroup>
-		<Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-			<Private>False</Private>
-		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Include="Properties\AssemblyInfo.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<EmbeddedResource Include="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<Compile Include="Properties\Resources.Designer.cs">
+		<None Include="CodeAnalysis.ruleset" />
+		<EmbeddedResource Include="MainRibbon.xml" />
+		<AppDesigner Include="Properties\" />
+		<None Include="ThisAddIn.Designer.xml">
+			<DependentUpon>ThisAddIn.cs</DependentUpon>
+		</None>
+		<AdditionalFiles Include="stylecop.json" />
+		<None Include="TemporaryKey.pfx" />
+		<Compile Update="Properties\Resources.Designer.cs">
 			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<None Include="Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
-		<Compile Include="Properties\Settings.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Settings.settings</DependentUpon>
-		</Compile>
-		<None Include="CodeAnalysis.ruleset" />
-		<EmbeddedResource Include="MainRibbon.xml" />
-		<Compile Include="RibbonManager.cs" />
-		<AdditionalFiles Include="stylecop.json" />
-		<Compile Include="ThisAddIn.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<None Include="ThisAddIn.Designer.xml">
-			<DependentUpon>ThisAddIn.cs</DependentUpon>
-		</None>
-		<Compile Include="ThisAddIn.Designer.cs">
-			<DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
-		</Compile>
-		<AppDesigner Include="Properties\" />
-		<None Include="TemporaryKey.pfx" />
 	</ItemGroup>
 
-	<PropertyGroup>
-		<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-		<VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-	</PropertyGroup>
+	<!-- Generate VSTO manifest using mage.exe -->
+	<Target Name="GenerateManifest" AfterTargets="Build">
+		<Exec Command="mage -New Application -ToFile &quot;$(OutputPath)MyOutlookAddin.vsto&quot; -Name MyOutlookAddin -Version 1.0.0.0 -FromDirectory &quot;$(OutputPath)&quot;" />
+	</Target>
 
-	<PropertyGroup>
-		<SignManifests>true</SignManifests>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<ManifestKeyFile>TemporaryKey.pfx</ManifestKeyFile>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<ManifestCertificateThumbprint>2382168AA9A5C11319749D467AC4CC411435A118</ManifestCertificateThumbprint>
-	</PropertyGroup>
-
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
-	<Import Project="$(VSToolsPath)\OfficeTools\Microsoft.VisualStudio.Tools.Office.targets" Condition="'$(VSToolsPath)' != ''" />
-
-	<ProjectExtensions>
-		<VisualStudio>
-			<FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
-				<ProjectProperties HostName="Outlook" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
-				<Host Name="Outlook" GeneratedCodeNamespace="VstoOutlookAddInTemplate" IconIndex="0">
-					<HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
-				</Host>
-			</FlavorProperties>
-		</VisualStudio>
-	</ProjectExtensions>
+	<!-- Optional: Registry setup script -->
+	<Target Name="RegisterAddin" AfterTargets="Build">
+		<Exec Command="reg add HKCU\Software\Microsoft\Office\Outlook\Addins\MyOutlookAddin /v Description /t REG_SZ /d &quot;My Outlook Add-in&quot; /f" />
+		<Exec Command="reg add HKCU\Software\Microsoft\Office\Outlook\Addins\MyOutlookAddin /v FriendlyName /t REG_SZ /d &quot;My Outlook Add-in&quot; /f" />
+		<Exec Command="reg add HKCU\Software\Microsoft\Office\Outlook\Addins\MyOutlookAddin /v LoadBehavior /t REG_DWORD /d 3 /f" />
+		<Exec Command="reg add HKCU\Software\Microsoft\Office\Outlook\Addins\MyOutlookAddin /v Manifest /t REG_SZ /d &quot;$(OutputPath)MyOutlookAddin.vsto|vstolocal&quot; /f" />
+	</Target>
 
 </Project>
